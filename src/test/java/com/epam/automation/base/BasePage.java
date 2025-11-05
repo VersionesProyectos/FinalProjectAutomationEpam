@@ -22,35 +22,9 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    protected String getPageTitle() {
-        return driver.getTitle();
-    }
-
     protected void click(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
-    }
-
-    public void sendKeys(WebElement element, String text) {
-        element.clear();
-        if (text != null && !text.isEmpty()) {
-            element.sendKeys(text);
-        }
-    }
-
-    protected String getText(WebElement element){
-        wait.until(ExpectedConditions.visibilityOf(element));
-        return element.getText();
-    }
-
-
-    protected boolean isDisplayed(WebElement element) {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(element));
-            return element.isDisplayed();
-        } catch (TimeoutException | NoSuchElementException e) {
-            return false;
-        }
     }
 
     protected void waitForElementToBeVisible(WebElement element) {
@@ -62,8 +36,4 @@ public class BasePage {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    protected void waitForPageLoad() {
-        wait.until(driver -> ((JavascriptExecutor) driver)
-                .executeScript("return document.readyState").equals("complete"));
-    }
 }
