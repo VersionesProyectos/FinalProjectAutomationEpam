@@ -1,0 +1,8 @@
+[10:59:36] [main] INFO  com.epam.automation.tests.LoginTest - === Starting test with Username: 'standard_user' and Password: 'standard_user' ===
+[10:59:36] [main] INFO  com.epam.automation.tests.LoginTest - Executing UC-3: Valid credentials
+[10:59:42] [main] INFO  com.epam.automation.tests.LoginTest - === Starting test with Username: 'standard_user' and Password: '' ===
+[10:59:42] [main] INFO  com.epam.automation.tests.LoginTest - Executing UC-2: Password cleared
+[10:59:43] [main] INFO  com.epam.automation.tests.LoginTest - UC passed: Error message 'Password is required' validated successfully
+[10:59:47] [main] INFO  com.epam.automation.tests.LoginTest - === Starting test with Username: 'standard_user' and Password: 'secret_sauce' ===
+[10:59:47] [main] INFO  com.epam.automation.tests.LoginTest - Executing UC-3: Valid credentials
+[10:59:48] [main] INFO  com.epam.automation.tests.LoginTest - UC-3 passed: Login successful!

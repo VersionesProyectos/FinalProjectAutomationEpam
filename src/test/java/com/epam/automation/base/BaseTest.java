@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -31,23 +32,28 @@ public class BaseTest {
         driver.get(BASE_URL);
     }
 
-    private WebDriver initializeDriver(String browser) {
+    protected WebDriver initializeDriver(String browser) {
         switch (browser.toLowerCase()) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--disable-notifications");
+                options.addArguments("--incognito");
 
                 return new ChromeDriver(options);
+
+            case "edge":
+                System.setProperty("webdriver.edge.driver", "C:\\edgedriver_win64\\msedgedriver.exe");
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                edgeOptions.addArguments("--disable-notifications");
+                edgeOptions.addArguments("--inprivate");
+                return new EdgeDriver(edgeOptions);
 
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();
-
-            case "edge":
-                WebDriverManager.edgedriver().setup();
-                return new EdgeDriver();
 
             default:
                 throw new IllegalArgumentException("Browser not supported: " + browser);
@@ -65,3 +71,4 @@ public class BaseTest {
         if (driver != null) driver.quit();
     }
 }
+

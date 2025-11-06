@@ -12,6 +12,7 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
+
     public BasePage(WebDriver driver) {
 
         if (driver == null) {
@@ -31,9 +32,22 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    protected void scrollToElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    protected void safeClear(WebElement element) {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            element.click();
+            String value = element.getAttribute("value");
+            if (value != null && !value.isEmpty()) {
+
+                for (int i = 0; i < value.length(); i++) {
+                    element.sendKeys(Keys.BACK_SPACE);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Field could not be cleared: " + e.getMessage());
+        }
     }
+
+
 
 }

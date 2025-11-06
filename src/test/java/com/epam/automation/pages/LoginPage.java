@@ -4,7 +4,6 @@ import com.epam.automation.base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 
@@ -29,27 +28,51 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+
+    public WebElement getUserNameField() {
+        return userNameField;
+    }
+
+    public WebElement getPasswordField() {
+        return passwordField;
+    }
+
+    public WebElement getLoginButton() {
+        return loginButton;
+    }
+
     public void loginWithEmptyFields(String userName, String password) {
 
+        // Esperar y escribir en el campo de usuario
         waitForElementToBeVisible(userNameField);
+        click(userNameField);
         userNameField.sendKeys(userName);
-        userNameField.clear();
 
+        // Limpiar de forma segura
+        safeClear(userNameField);
+
+        // Esperar y escribir en el campo de contraseña
         waitForElementToBeVisible(passwordField);
+        click(passwordField);
         passwordField.sendKeys(password);
-        passwordField.clear();
 
+        // Limpiar de forma segura
+        safeClear(passwordField);
+
+        // Clic en login
         click(loginButton);
     }
 
     public void loginWithEmptyPassword(String userName, String password) {
 
         waitForElementToBeVisible(userNameField);
+        userNameField.clear();
         userNameField.sendKeys(userName);
 
         waitForElementToBeVisible(passwordField);
         passwordField.sendKeys(password);
-        passwordField.clear();
+
+        safeClear(passwordField);
 
         click(loginButton);
     }
@@ -70,14 +93,13 @@ public class LoginPage extends BasePage {
 
         try {
             waitForElementToBeVisible(headerTitle);
-            // Compara el texto del título con "Swag Labs"
             return headerTitle.getText().trim().equals("Swag Labs");
         } catch (Exception e) {
             return false;
         }
 
     }
-    // Valida que se muestra un mensaje de error
+
     public boolean isErrorMessageDisplayed() {
         try {
 
@@ -88,7 +110,6 @@ public class LoginPage extends BasePage {
         }
     }
 
-    //Obtiene el error mensaje
     public String getErrorMassagetext() {
         try {
             return errorMenssage.getText();
