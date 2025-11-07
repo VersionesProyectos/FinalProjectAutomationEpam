@@ -29,18 +29,6 @@ public class LoginPage extends BasePage {
     }
 
 
-    public WebElement getUserNameField() {
-        return userNameField;
-    }
-
-    public WebElement getPasswordField() {
-        return passwordField;
-    }
-
-    public WebElement getLoginButton() {
-        return loginButton;
-    }
-
     public void loginWithEmptyFields(String userName, String password) {
 
         // Esperar y escribir en el campo de usuario
