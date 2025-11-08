@@ -24,7 +24,6 @@ public class LoginSteps {
     @Given("the user is on the login page")
     public void userOnLoginPage() {
         scenario.log("User is on the login page");
-        // Here you would normally open the browser and navigate to the login page
     }
 
     @When("the user types username {string} and password {string}")

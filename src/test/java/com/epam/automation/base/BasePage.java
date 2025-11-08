@@ -34,8 +34,7 @@ public class BasePage {
 
     protected void safeClear(WebElement element) {
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(element));
-            element.click();
+            click(element);
             String value = element.getAttribute("value");
             if (value != null && !value.isEmpty()) {
 
@@ -47,7 +46,4 @@ public class BasePage {
             System.out.println("Field could not be cleared: " + e.getMessage());
         }
     }
-
-
-
 }

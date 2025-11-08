@@ -31,23 +31,18 @@ public class LoginPage extends BasePage {
 
     public void loginWithEmptyFields(String userName, String password) {
 
-        // Esperar y escribir en el campo de usuario
         waitForElementToBeVisible(userNameField);
         click(userNameField);
         userNameField.sendKeys(userName);
 
-        // Limpiar de forma segura
         safeClear(userNameField);
 
-        // Esperar y escribir en el campo de contraseña
         waitForElementToBeVisible(passwordField);
         click(passwordField);
         passwordField.sendKeys(password);
 
-        // Limpiar de forma segura
         safeClear(passwordField);
 
-        // Clic en login
         click(loginButton);
     }
 

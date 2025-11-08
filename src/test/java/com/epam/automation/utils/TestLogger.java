@@ -9,7 +9,7 @@ public class TestLogger {
     public static final Logger logger = LogManager.getLogger(TestLogger.class);
 
     private TestLogger() {
-        // Evitar instanciación
+
     }
 
 }
